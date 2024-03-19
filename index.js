@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 */
 
                 // Check for a custom form title element, otherwise use the form's name attribute
-                const formTitleElement = form.querySelector('.dmform-title');
+                const formTitleElement = document.querySelector('.dmform-title');
                 const formName = formTitleElement ? formTitleElement.textContent : form.getAttribute('name');
-                console.log('formName ',formName);
+                //console.log('formName ',formName);
                 const formId = form.getAttribute('id');
 
                 var webhookUrl = 'https://d197.bubble.is/site/gonzy/version-4i/api/1.1/wf/embedded-form-submission';
