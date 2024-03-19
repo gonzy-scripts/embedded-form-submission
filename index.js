@@ -1,3 +1,31 @@
+ // Function to get the current script tag
+function getCurrentScriptTag() {
+        // Get all script tags in the document
+        var scripts = document.getElementsByTagName('script');
+        // Look for the script tag that has the src ending with your script's filename
+        for (var i = scripts.length - 1; i >= 0; i--) {
+            var script = scripts[i];
+            if (script.src.includes('yourscript.js')) {
+                return script;
+            }
+        }
+        return null;
+    }
+
+    // Function to get the company attribute from the script tag
+    function getCompanyParameter() {
+        var scriptTag = getCurrentScriptTag();
+        if (scriptTag) {
+            return scriptTag.getAttribute('company');
+        }
+        return null;
+    }
+
+// Use the company parameter in your code
+const company = getCompanyParameter();
+console.log("Company parameter value:", company);
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
             function generateUniqueID() {
@@ -54,8 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     fieldsArray.push({ "field": key, "value": value.toString() });
                 });
                 */
-
-                const company = "1710833931162x233471620314562560";
 
                 // Check for a custom form title element, otherwise use the form's name attribute
                 const formTitleElement = form.querySelector('.dmform-title');
