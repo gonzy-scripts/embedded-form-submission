@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 //console.log('formName ',formName);
                 const formId = form.getAttribute('id');
 
-                var webhookUrl = 'https://d197.bubble.is/site/gonzy/version-4i/api/1.1/wf/embedded-form-submission';
+                var webhookUrl = 'https://d197.bubble.is/site/gonzy/version-test/api/1.1/wf/embedded-form-submission';
 
                 // Create the request to send the form data
                 fetch(webhookUrl, {
