@@ -21,10 +21,22 @@ function getCurrentScriptTag() {
         return null;
     }
 
+ function getTestingParameter() {
+     var scriptTag = getCurrentScriptTag();
+        if (scriptTag) {
+            return scriptTag.getAttribute('testing');
+        }
+        return null;
+ }
+
 // Use the company parameter in your code
 const company = getCompanyParameter();
 console.log("Company parameter value:", company);
 
+const testingParameter = getTestingParameter();
+console.log("Testing parameter value: ",testingParameter)
+const testing = testingParameter === "true";
+console.log("Testing value: ", testing);
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -89,7 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 //console.log('formName ',formName);
                 const formId = form.getAttribute('id');
 
-                var webhookUrl = 'https://d197.bubble.is/site/gonzy/version-test/api/1.1/wf/embedded-form-submission';
+                const version = testing ? 'version-test/' : '';
+                var webhookUrl = `https://d197.bubble.is/site/gonzy/${version}api/1.1/wf/embedded-form-submission`;
 
                 // Create the request to send the form data
                 fetch(webhookUrl, {
