@@ -99,8 +99,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 const formTitleElement = document.querySelector('.dmform-title');
                 const formName = formTitleElement ? formTitleElement.textContent : form.getAttribute('name');
                 //console.log('formName ',formName);
-                const formId = form.getAttribute('id');
-
+                
+                let formId = form.getAttribute('id');
+                if (!formId || formId.trim() === '') {
+                   // Function to create a unique form ID based on URL and number/type of inputs
+                   function createCustomFormId(form) {
+                          const pageUrl = window.location.href;
+                          const inputCount = form.querySelectorAll('input, select, textarea').length;
+                          const inputTypes = Array.from(form.elements)
+                                 .map(element => element.tagName.toLowerCase() + '-' + element.type)
+                                 .join(',');
+                          return `form-${pageUrl.replace(/[^a-z0-9]/gi, '_')}-${inputCount}-${inputTypes}`;
+                   }
+                   formId = createCustomFormId(form);
+                   console.log('Generated custom formId:', formId);
+                }
+             
                 const version = testing ? 'version-test/' : '';
                 var webhookUrl = `https://d197.bubble.is/site/gonzy/${version}api/1.1/wf/embedded-form-submission`;
 
